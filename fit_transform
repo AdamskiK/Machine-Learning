@@ -5,12 +5,11 @@ class ExtractOsName():
         self.dataset = dataset
         self.col = col
         self.col_name = col_name
-        return self
     def fit(self):
         return self
     def transform(self, dataset):
-        self.dataset[self.col_name]=self.dataset[self.col].str.extract('([ (](\w+)')
-        return self.dataset
+        dataset[self.col_name]=self.dataset[self.col].str.extract('(?<=\()(\w+)')
+        return dataset
         
 class CompareColumns():
     def __init__(self, dataset, col1, col2, new_col_name):
@@ -18,7 +17,6 @@ class CompareColumns():
         self.col1 = col1
         self.col2 = col2
         self.new_col_name = new_col_name
-        return self
     def fit(self):
         return self
     def transform(self, dataset):
